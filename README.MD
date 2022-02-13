@@ -1,30 +1,36 @@
 
 
 
+
 # Minecraft Advertisement API
 ## Setup:
 
 
+### As a library in your Maven Project 
+Add all the files in the "src/main/java" directory to your project.
 
-### As a Plugin
-Before you even start you will need to setup an Adf.ly account and enable API access. In your IDE add the .jar file to the Build-Path and then in the plugin.yml add `depend: [MAA]`. Copy the MMA.jar file in you plugins folder.
-
-> Attention: On the first load the plugin will automatically disable itself. You need to update the Adf.ly API access info in the config.yml file found in the plugin folder and then specify on which domain the NodeJS is hosted.
-
-### As a library in you IDE
-Add this [Jar-file](https://github.com/hesperiusproject/MAA/blob/master/drag_n_drop/MAA_Lib.jar) to your plugins Build-Path.
-
-> In eclipse, you'll need to use Fatjar to include the API and all its libraries into your plugin, otherwise you'll have to do that manually!
-
- The methods remain the same, with the difference that there will not be a `config.yml` file to edit, you will directly pass all that information in the constructor:
-```java
-new MAA(Plugin plugin, String domain, String public_key, String secret_key, int user_id);
+Then you'll need to edit your **pom.xml** file, by adding this code to the "\<dependecies> \</dependencies>" section:
+	
+```xml
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.12</version>
+</dependency>
 ```
+
+
+ To start the API, you will need to pass the required information in the constructor:
+```java
+MAA.initialize(JavaPlugin plugin, String domain, String public_key, String secret_key, int user_id);
+```
+> The parameter "domain" requires the port address of the Node server, which by default is 2000. It should look something like this "yourdomain.com:2000".	
+
 After you've done that you can access all the methods statically as shown below. If you skip this step, the API will not work!
 ### NodeJS backend setup
 Now to NodeJS: open the folder which contains the server and through the command-terminal run `npm install package.json` to install the required libraries.
  Open **index.js** and edit the array named: **allowed_ips**. There you will need to add every IP adress of minecraft server using this API. By default the local IP (127.0.0.1) is already allowed, so if the minecraft-server is hosted on the same machine, you don't have to edit anything.
- To run the server type `node index.js`.
+ To start the server run `$ node index.js` 
 
 In the NodeJS-server folder, you'll notice there are two .html files present. You may edit them as you wish, but make sure their names don't change (success.html and error.html).
 
@@ -41,14 +47,14 @@ MAA.add(Player player)
 This method returns a string:
 ```java
 Player player = Bukkit.getPlayerExact("Exampleplayer");
-String link = MAA.add(player);
+String link = MAA.addChallenge(player);
 ```
 
 Alternatively you may use this method Asynchronously, adding a CreateCallback() parameter.
 Example:
 ```java
 final Player player = Bukkit.getPlayerExact("Exampleplayer");
-MAA.add(player, new CreateCallback(){
+MAA.addChallenge(player, new CreateCallback(){
 	public void asyncAddPlayer(String link) {
 		//Your code goes in here
 	}	
@@ -120,7 +126,4 @@ Following this [link](https://youtu.be/FjUq4_Bzpd4) you will see an example of h
 I suggest not reloading the plugin once it is enabled on the server for the following reason: allthough the MAA will still work fine, it will start outputting an error on every HTTP request in the console. This bug  is not caused by the plugin itself, but by the libraries it uses.
 ### Get in touch
 If you have a problem or suggestion, you can email my at giovanni@gallmetzer.taa.it or send a PM to my discord **Gio#4621** .
-### TO-DO
-I plan on creating a maven-repository to make it easier than ever to work with my API!
-
 
