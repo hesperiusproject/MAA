@@ -128,7 +128,7 @@ I strongly advise against using functions which I have not listed in this README
 
 ## Other information
 ### Example:
-Following this [link](https://youtu.be/FjUq4_Bzpd4) you will see an example of how one could use this API. In the [snipplet](https://github.com/hesperiusproject/MAA/tree/master/Snipplet/src) section, you will find the code used in the video.
+Follow this [link](https://youtu.be/FjUq4_Bzpd4) to see an example of how one could use this API. In the [snipplet](https://github.com/hesperiusproject/MAA_OLD/tree/master/Snipplet/src) section, you will find the code used in the video.
 
 ### Known issues:
 I suggest not reloading the plugin once it is enabled on the server for the following reason: allthough the MAA will still work fine, it will start outputting an error on every HTTP request in the console. This bug  is not caused by the plugin itself, but by the libraries it uses.
