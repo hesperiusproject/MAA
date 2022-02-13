@@ -21,7 +21,7 @@ Then, you might need to do the following changes to your **pom.xml** file, by ad
 ```
 
 
- To start the API, you will need to pass the required information in the constructor:
+ To start the API, you will need to pass the required information in the initializer:
 ```java
 MAA.initialize(JavaPlugin plugin, String domain, String public_key, String secret_key, int user_id);
 ```
