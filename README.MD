@@ -9,7 +9,7 @@
 ### As a library in your Maven Project 
 Add all the files in the "src/main/java" directory to your project.
 
-Then you'll need to edit your **pom.xml** file, by adding this code to the "\<dependecies> \</dependencies>" section:
+If you're using an older version of spigot/paper, you might need to do the following changes to your **pom.xml** file, by adding this code to the "\<dependecies> \</dependencies>" section:
 	
 ```xml
 <dependency>
