@@ -29,13 +29,13 @@ MAA.initialize(JavaPlugin plugin, String domain, String public_key, String secre
 
 After you've done that you can access all the methods statically as shown below. If you skip this step, the API will not work!
 ### NodeJS backend setup
-Now to NodeJS: open the folder which contains the server and through the command-terminal run `npm install package.json` to install the required libraries.
+Now to NodeJS: open the folder which contains the server and through the command-terminal run `$ npm install package.json` to install the required libraries.
  Open **index.js** and edit the array named: **allowed_ips**. There you will need to add every IP adress of minecraft server using this API. By default the local IP (127.0.0.1) is already allowed, so if the minecraft-server is hosted on the same machine, you don't have to edit anything.
  To start the server run `$ node index.js` 
 
 In the NodeJS-server folder, you'll notice there are two .html files present. You may edit them as you wish, but make sure their names don't change (success.html and error.html).
 
-If you've done everything correclty, when you load the NodeJS server and then the minecraft one, everything should work fine. 
+If you've done everything correctly, when you load the NodeJS server and then the minecraft one, everything should work fine. 
 
 ## How to use:
 Once everything is setup, we can get into coding! 
@@ -114,11 +114,17 @@ This method returns *false* whenever the challenge has not been completed (i.e. 
 Otherwise, wheter the challenge has been completed or there isn't one, the method will return always *true*.
 
 #### Error handling
-I don't I can really call it error handling, but in case something goes wrong in the MAA.addChallenge method, an error-string is returned, there are three types: "Error 1" is for when there's a problem with the NodeJS server; "Error 2" when there's a problem with Adf.ly API and "Error 3" when a challenge already exists for a player.
+I haven't implemented any sophisticated error handling code, but in case something goes wrong in the MAA.addChallenge method, an error-string is returned. 
+There are three types: 
+- "Error 1" -> problem with the NodeJS server.
+- "Error 2" -> problem with Adf.ly API.
+- "Error 3" -> a challenge already exists for that player.
 
 
 ### Suggestions
 I really suggest putting the `MAA.clean()` method in `onDisable()`. This will remove any unused links of created challenges on the Adf.ly website, which otherwise you would have to do on your own.
+
+I strongly advise against using functions which I have not listed in this README.MD file, as they are for internal API use, and messing with them could cause bugs and errors. 
 
 ## Other information
 ### Example:
@@ -127,5 +133,5 @@ Following this [link](https://youtu.be/FjUq4_Bzpd4) you will see an example of h
 ### Known issues:
 I suggest not reloading the plugin once it is enabled on the server for the following reason: allthough the MAA will still work fine, it will start outputting an error on every HTTP request in the console. This bug  is not caused by the plugin itself, but by the libraries it uses.
 ### Get in touch
-If you have a problem or suggestion, you can email my at giovanni@gallmetzer.taa.it or send a PM to my discord **Gio#4621** .
+If you have a problem or suggestion, you can email my at info@hesperius.it or send a PM to my discord **Gio#4621** .
 
